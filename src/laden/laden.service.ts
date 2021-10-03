@@ -29,8 +29,19 @@ export class LadenService {
         return ladenList
     }
 
-    async create(newLadenDto: NewLadenDto) : Promise<LadenDto> {
+    async create(newLadenDto: NewLadenDto) : Promise<Laden> {
         let laden = await this.ladenRepo.create(newLadenDto)
         return this.ladenRepo.save(laden)
+    }
+
+    async update(id: number, ladenDto: LadenDto): Promise<Laden> {
+        let laden = await this.ladenRepo.findOne(id)
+        laden.name = ladenDto.name
+        laden.online = ladenDto.online
+        return this.ladenRepo.save(laden)
+    }
+
+    async remove(id: number) {
+        this.ladenRepo.delete(id)
     }
 }
