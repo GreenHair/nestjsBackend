@@ -23,17 +23,18 @@ export class LadenController {
     @Post()
     @UsePipes(new ValidationPipe())
     async create(@Body() laden: NewLadenDto): Promise<number> {
-        const newLaden = this.service.create(laden)
+        const newLaden = await this.service.create(laden)
         return toEntityDto(new LadenDto(), newLaden)
     }
 
-    @Put("id")
+    @Put(":id")
     @UsePipes(new ValidationPipe())
     async update(@Param("id") id: number, @Body() laden: LadenDto) {
-
+        const updated = await this.service.update(id, laden)
+        return updated
     }
 
-    @Delete("id")
+    @Delete(":id")
     async delete(@Param("id") id: number) {
         
     }

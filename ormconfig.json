@@ -12,8 +12,7 @@
       "src/entities/*.js", "dist/entities/*.js"
     ],
     "migrations": [
-      "src/migrations/*.js", "dist/migrations/*.js"
-      
+      "src/migration/*.js", "dist/migration/*.js"
     ],
     "subscribers": [      
       "src/subscribers/*.js", "dist/subscribers/*.js"

@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@laden": ["src/laden"],
-      "@shared": ["src/shared"]
+      "@shared": ["src/shared"],
+      "@rechnung":["src/shared"]
     }
   }
 }

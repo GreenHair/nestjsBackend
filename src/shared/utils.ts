@@ -1,7 +1,10 @@
+import { getConnectionOptions, getConnection } from 'TypeORM';
+import * as bcrypt from 'bcrypt';
+
 export const toPromise = <T>(data: T): Promise<T> => {  
     return new Promise<T>(resolve => { resolve(data);  });
 };
-import { getConnectionOptions, getConnection } from 'TypeORM';
+
 export const getDbConnectionOptions = async (connectionName: string = 'default',
 ) => {
     const options = await getConnectionOptions(process.env.NODE_ENV || 'development', );
@@ -18,4 +21,8 @@ export const getDbConnection = async (connectionName: string = 'default') => {
 export const runDbMigrations = async (connectionName: string = 'default') => {
     const conn = await getDbConnection(connectionName);
     await conn.runMigrations();
+};
+
+export const comparePasswords = async (userPassword, currentPassword) => {
+    return await bcrypt.compare(currentPassword, userPassword);
 };

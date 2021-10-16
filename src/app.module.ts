@@ -5,9 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LadenModule } from './laden/laden.module';
 import { RechnungModule } from './rechnung/rechnung.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [RechnungModule]
+  imports: [RechnungModule, UserModule, AuthModule]
 })
 export class AppModule {
     static forRoot(
@@ -15,7 +17,7 @@ export class AppModule {
         return {
         module: AppModule,
         controllers: [AppController],
-        imports: [LadenModule, TypeOrmModule.forRoot(connOptions)],
+        imports: [LadenModule, RechnungModule, TypeOrmModule.forRoot(connOptions)],
         providers: [AppService],
         };
     }

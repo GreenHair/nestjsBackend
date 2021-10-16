@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Laden } from 'src/entities/Laden';
 import { toPromise } from 'src/shared/utils';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 import { LadenDto } from './dto/ladenDto';
 import { NewLadenDto } from './dto/newLadenDto';
 
@@ -30,6 +30,14 @@ export class LadenService {
     }
 
     async create(newLadenDto: NewLadenDto) : Promise<Laden> {
+        const exist = await this.ladenRepo.find({name: newLadenDto.name})
+        console.log(exist)
+        if(exist){
+            throw new HttpException(
+                "Laden schon vorhanden",
+                HttpStatus.BAD_REQUEST
+            )
+        }
         let laden = await this.ladenRepo.create(newLadenDto)
         return this.ladenRepo.save(laden)
     }

@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import 'dotenv/config';
 import { Logger } from '@nestjs/common';
 import { getDbConnectionOptions, runDbMigrations } from './shared/utils';
+import { getConnection } from 'typeorm';
 
 const port = process.env.PORT;
 
@@ -14,9 +15,9 @@ async function bootstrap() {
     /**
     * Run DB migrations
     */
-    //await runDbMigrations();    
-      
-    await app.listen(port);
+   //await runDbMigrations();
+   
+   await app.listen(port);
 
     Logger.log(`Server started running on http://localhost:${port}`, 'Bootstrap');
 }
