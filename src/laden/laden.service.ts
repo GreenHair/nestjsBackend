@@ -50,6 +50,6 @@ export class LadenService {
     }
 
     async remove(id: number) {
-        this.ladenRepo.delete(id)
+        return this.ladenRepo.delete(id)
     }
 }

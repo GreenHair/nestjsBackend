@@ -36,6 +36,7 @@ export class LadenController {
 
     @Delete(":id")
     async delete(@Param("id") id: number) {
-        
+        const deleted = await this.service.remove(id)
+        return deleted
     }
 }

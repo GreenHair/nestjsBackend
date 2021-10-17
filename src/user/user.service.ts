@@ -34,9 +34,9 @@ export class UserService {
         return toUserDto(user);  
     }
     
-    async findByPayload({ username }: any): Promise<UserDto> {
+    async findByPayload({ name }: any): Promise<UserDto> {
         return await this.findOne({ 
-            where:  { username } });  
+            where:  { name } });  
     }
 
     async create(userDto: CreateUserDto): Promise<UserDto> {    
