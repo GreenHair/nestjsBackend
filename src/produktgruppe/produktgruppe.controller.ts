@@ -18,7 +18,7 @@ export class ProduktgruppeController {
     @Get(":id")
     async getOne(@Param("id") id: number): Promise<ProduktgruppeDto> {
         const kategorie = await this.service.getone(id)
-        return toEntityDto(new LadenDto(), kategorie)
+        return toEntityDto(new ProduktgruppeDto(), kategorie)
     }
 
     @Post()
