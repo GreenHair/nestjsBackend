@@ -9,9 +9,12 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProduktgruppeController } from './produktgruppe/produktgruppe.controller';
 import { ProduktgruppeModule } from './produktgruppe/produktgruppe.module';
+import { FamilienmitgliedController } from './familienmitglied/familienmitglied.controller';
+import { FamilienmitgliedService } from './familienmitglied/familienmitglied.service';
+import { FamilienmitgliedModule } from './familienmitglied/familienmitglied.module';
 
 @Module({
-  imports: [RechnungModule, UserModule, AuthModule, ProduktgruppeModule]
+  imports: [RechnungModule, UserModule, AuthModule, ProduktgruppeModule, FamilienmitgliedModule],
 })
 export class AppModule {
     static forRoot(
@@ -24,7 +27,8 @@ export class AppModule {
         imports: [
           LadenModule, 
           RechnungModule, 
-          ProduktgruppeModule, 
+          ProduktgruppeModule,
+          FamilienmitgliedModule,
           TypeOrmModule.forRoot(connOptions)],
         providers: [AppService],
         };
