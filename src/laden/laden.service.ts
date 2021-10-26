@@ -32,7 +32,7 @@ export class LadenService {
     async create(newLadenDto: NewLadenDto) : Promise<Laden> {
         const exist = await this.ladenRepo.find({name: newLadenDto.name})
         console.log(exist)
-        if(exist){
+        if(exist.length > 0){
             throw new HttpException(
                 "Laden schon vorhanden",
                 HttpStatus.BAD_REQUEST
