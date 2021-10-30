@@ -7,7 +7,7 @@ import { Familienmitglied } from 'src/entities/Familienmitglied';
 import { Produktgruppe } from 'src/entities/Produktgruppe';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Ausgaben, Familienmitglied, Produktgruppe])],
+  imports: [TypeOrmModule.forFeature([Ausgaben, Produktgruppe])],
   providers: [AusgabenService],
   controllers: [AusgabenController]
 })
