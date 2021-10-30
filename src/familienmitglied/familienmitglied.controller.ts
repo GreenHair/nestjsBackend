@@ -16,15 +16,15 @@ export class FamilienmitgliedController {
 
     @Get(":id")
     async getOne(@Param("id") id: number): Promise<FamilienmitgliedDto> {
-        const kategorie = await this.service.getone(id)
-        return toEntityDto(new FamilienmitgliedDto(), kategorie)
+        const familienmitglied = await this.service.getone(id)
+        return toEntityDto(new FamilienmitgliedDto(), familienmitglied)
     }
 
     @Post()
     @UsePipes(new ValidationPipe())
     async create(@Body() kategorie: NewFamilienmitgliedDto): Promise<FamilienmitgliedDto> {
-        const newKategorie = await this.service.create(kategorie)
-        return toEntityDto(new FamilienmitgliedDto(), newKategorie)
+        const newFamilienmitglied = await this.service.create(kategorie)
+        return toEntityDto(new FamilienmitgliedDto(), newFamilienmitglied)
     }
 
     @Put(":id")
