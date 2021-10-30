@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Produktgruppe } from "./Produktgruppe";
 
 @Entity("ausgaben", { schema: "haushaltsbuch" })
 export class Ausgaben {
@@ -17,7 +18,9 @@ export class Ausgaben {
   betrag: number | null;
 
   @Column("int", { name: "prod_gr", nullable: true })
-  prodGr: number | null;
+  @ManyToOne(type => Produktgruppe, produktgruppe => produktgruppe.id)
+  @JoinColumn({ name: "prod_gr", referencedColumnName: "id" })
+  prodGr: Produktgruppe;
 
   @Column("int", { name: "rechnungsnr", nullable: true })
   rechnungsnr: number | null;

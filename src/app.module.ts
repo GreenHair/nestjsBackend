@@ -12,9 +12,16 @@ import { ProduktgruppeModule } from './produktgruppe/produktgruppe.module';
 import { FamilienmitgliedController } from './familienmitglied/familienmitglied.controller';
 import { FamilienmitgliedService } from './familienmitglied/familienmitglied.service';
 import { FamilienmitgliedModule } from './familienmitglied/familienmitglied.module';
+import { AusgabenModule } from './ausgaben/ausgaben.module';
 
 @Module({
-  imports: [RechnungModule, UserModule, AuthModule, ProduktgruppeModule, FamilienmitgliedModule],
+  imports: [
+    RechnungModule, 
+    UserModule, 
+    AuthModule, 
+    ProduktgruppeModule, 
+    FamilienmitgliedModule, 
+    AusgabenModule],
 })
 export class AppModule {
     static forRoot(
