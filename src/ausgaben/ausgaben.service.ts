@@ -22,7 +22,7 @@ export class AusgabenService {
     }
 
     async getAll(): Promise<Ausgaben[]> {
-        const list = await this.repo.find({ relations: ["prodGr"] })
+        const list = await this.repo.find()
         return list
     }
 

@@ -1,3 +1,4 @@
+import { Rechnung } from "src/entities/Rechnung";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Produktgruppe } from "./Produktgruppe";
 
@@ -18,10 +19,12 @@ export class Ausgaben {
   betrag: number | null;
 
   @Column("int", { name: "prod_gr", nullable: true })
-  @ManyToOne(type => Produktgruppe, produktgruppe => produktgruppe.id)
+  @ManyToOne(type => Produktgruppe, produktgruppe => produktgruppe.id, {eager: true})
   @JoinColumn({ name: "prod_gr", referencedColumnName: "id" })
   prodGr: Produktgruppe;
 
   @Column("int", { name: "rechnungsnr", nullable: true })
-  rechnungsnr: number | null;
+  @ManyToOne(type => Rechnung, rechnung => rechnung.id, { cascade: true, onDelete: "CASCADE"})
+  @JoinColumn({name: "rechnungsnr", referencedColumnName: "id"})
+  rechnungsnr: Rechnung;
 }
