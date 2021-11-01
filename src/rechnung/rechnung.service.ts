@@ -10,7 +10,7 @@ export class RechnungService {
     constructor(@InjectRepository(Rechnung) private readonly repo: Repository<Rechnung>) {}
 
     async getone(id: number): Promise<Rechnung> {
-        const ausgabe = await this.repo.findOne(id, {relations: ["ausgaben"] })
+        const ausgabe = await this.repo.findOne(id)
 
         if(!ausgabe) {
             throw new HttpException("Rechnung nicht gefunden",
@@ -21,22 +21,21 @@ export class RechnungService {
     }
 
     async getAll(): Promise<Rechnung[]> {
-        const list = await this.repo.find({ relations: ["laden", "person", "ausgaben"] })
+        const list = await this.repo.find()
         return list
     }
 
     async create(newRechnungDto: NewRechnungDto): Promise<Rechnung> {
         
-        let rechnung =  await this.repo.create(newRechnungDto)
-        return this.repo.save(rechnung)
+        return this.repo.save(newRechnungDto)
     }
 
     async update(id: number, RechnungDto: RechnungDto): Promise<Rechnung> {
         let rechnung = await this.getone(id)
-        rechnung.datum = RechnungDto.date.toISOString()
+        rechnung.datum = RechnungDto.date
         rechnung.einmalig = RechnungDto.einmalig
         rechnung.laden = RechnungDto.laden
-
+        rechnung.person = RechnungDto.person
 
         return this.repo.save(rechnung)
     }
