@@ -5,6 +5,7 @@ import { UserModule } from 'src/user/user.module';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import 'dotenv/config';
 
 @Module({  
     imports: [    
