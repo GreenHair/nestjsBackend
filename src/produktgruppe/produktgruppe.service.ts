@@ -20,6 +20,10 @@ export class ProduktgruppeService {
         return kategorie
     }
 
+    async findByName(name: string): Promise<ProduktgruppeDto> {
+        return this.repo.findOne({bezeichnung: name})
+    }
+
     async getAll(): Promise<Produktgruppe[]> {
         const list = await this.repo.find()
         return list
