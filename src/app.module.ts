@@ -7,10 +7,7 @@ import { LadenModule } from './laden/laden.module';
 import { RechnungModule } from './rechnung/rechnung.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { ProduktgruppeController } from './produktgruppe/produktgruppe.controller';
 import { ProduktgruppeModule } from './produktgruppe/produktgruppe.module';
-import { FamilienmitgliedController } from './familienmitglied/familienmitglied.controller';
-import { FamilienmitgliedService } from './familienmitglied/familienmitglied.service';
 import { FamilienmitgliedModule } from './familienmitglied/familienmitglied.module';
 import { AusgabenModule } from './ausgaben/ausgaben.module';
 
