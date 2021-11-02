@@ -3,8 +3,11 @@ import { AppModule } from './app.module';
 import 'dotenv/config';
 import { Logger } from '@nestjs/common';
 import { getDbConnectionOptions, runDbMigrations } from './shared/utils';
-import { getConnection } from 'typeorm';
 import { AuthGuard } from './auth/auth.guard';
+import { Container } from 'typedi';
+import { useContainer, Validator } from 'class-validator';
+import 'reflect-metadata';
+import { LadenModule } from './laden/laden.module';
 
 const port = process.env.PORT;
 
@@ -12,6 +15,8 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule.forRoot(await
         getDbConnectionOptions(process.env.NODE_ENV)),
     );
+
+    useContainer(app.select(LadenModule), { fallbackOnErrors: true });
 
     /**
     * Run DB migrations

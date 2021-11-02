@@ -23,6 +23,10 @@ export class LadenService {
         return laden
     }
 
+    async findByName(name: string): Promise<Laden> {
+        return this.ladenRepo.findOne({name: name})
+    }
+
     async getAll(): Promise<Laden[]> {
         const ladenList = await this.ladenRepo.find()
 
@@ -30,14 +34,14 @@ export class LadenService {
     }
 
     async create(newLadenDto: NewLadenDto) : Promise<Laden> {
-        const exist = await this.ladenRepo.find({name: newLadenDto.name})
+        /* const exist = await this.ladenRepo.find({name: newLadenDto.name})
         console.log(exist)
         if(exist.length > 0){
             throw new HttpException(
                 "Laden schon vorhanden",
                 HttpStatus.BAD_REQUEST
             )
-        }
+        } */
         let laden = await this.ladenRepo.create(newLadenDto)
         return this.ladenRepo.save(laden)
     }
