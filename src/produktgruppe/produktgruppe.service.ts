@@ -30,13 +30,6 @@ export class ProduktgruppeService {
     }
 
     async create(newProduktgruppeDto: NewProduktgruppeDto): Promise<Produktgruppe> {
-        const exists = await this.repo.find({bezeichnung: newProduktgruppeDto.bezeichnung})
-        if(exists.length > 0) {
-            throw new HttpException(
-                "Kategorie ist schon vorhanden",
-                HttpStatus.BAD_REQUEST
-            )
-        }
         let kategorie =  await this.repo.create(newProduktgruppeDto)
         return this.repo.save(kategorie)
     }

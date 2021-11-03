@@ -26,10 +26,10 @@ export class FamilienmitgliedService {
     }
 
     async create(newFamilienmitgliedDto: NewFamilienmitgliedDto): Promise<Familienmitglied> {
-        const exists = await this.repo.find({vorname: newFamilienmitgliedDto.vorname, nachname: newFamilienmitgliedDto.nachname})
-        if(exists.length > 0) {
+        const exists = await this.repo.findOne({vorname: newFamilienmitgliedDto.vorname, nachname: newFamilienmitgliedDto.nachname})
+        if(exists) {
             throw new HttpException(
-                "Kategorie ist schon vorhanden",
+                "Familienmitglied ist schon vorhanden",
                 HttpStatus.BAD_REQUEST
             )
         }

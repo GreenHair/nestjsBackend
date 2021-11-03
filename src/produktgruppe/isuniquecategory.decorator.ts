@@ -6,8 +6,6 @@ import {
     ValidatorConstraintInterface,
     ValidationArguments,
   } from 'class-validator';
-import { Produktgruppe } from 'src/entities/Produktgruppe';
-import { Repository } from 'typeorm';
 import { ProduktgruppeService } from './produktgruppe.service';
   
 @ValidatorConstraint({ async: true })
