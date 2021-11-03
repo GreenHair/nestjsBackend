@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Rechnung } from 'src/entities/Rechnung';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { NewRechnungDto } from './dto/newRechnungDto';
 import { RechnungDto } from './dto/rechnungDto';
 
@@ -20,8 +20,24 @@ export class RechnungService {
         return ausgabe
     }
 
-    async getAll(): Promise<Rechnung[]> {
-        const list = await this.repo.find()
+    async getAll(query?: any): Promise<Rechnung[]> {
+        const {year, month, week} = query
+        let selectQuery = this.repo.createQueryBuilder('rechnung')
+        .leftJoinAndSelect("rechnung.laden", "laden")
+        .leftJoinAndSelect("rechnung.person", "familienmtglied")
+        .leftJoinAndSelect("rechnung.ausgaben", "ausgaben")
+        .leftJoinAndSelect("ausgaben.prodGr", "produktgruppe")
+        if(query.year) {
+            selectQuery = selectQuery.where(`YEAR(rechnung.datum) = ${year}`)
+        }
+        if(query.month){
+            selectQuery = selectQuery.andWhere(`MONTH(rechnung.datum) = ${month}`)
+        }
+        if(query.week) {
+            selectQuery = selectQuery.andWhere(`WEEK(rechnung.datum) = ${week}`)
+        }
+        
+        const list = await selectQuery.getMany()
         return list
     }
 

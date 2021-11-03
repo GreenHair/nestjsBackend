@@ -1,16 +1,17 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { toEntityDto } from 'src/shared/mapper';
 import { NewRechnungDto } from './dto/newRechnungDto';
 import { RechnungDto } from './dto/rechnungDto';
 import { RechnungService } from './rechnung.service';
+import { RechnungQuery } from './dto/RechnungQuery';
 
 @Controller('rechnung')
 export class RechnungController {
     constructor(private service: RechnungService) {}
 
     @Get()
-    async getAll(): Promise<RechnungDto[]> {
-        const list = await this.service.getAll()
+    async getAll(@Query(new ValidationPipe()) query: RechnungQuery): Promise<RechnungDto[]> {
+        const list = await this.service.getAll(query)
         return toEntityDto([], list)
     }
 
