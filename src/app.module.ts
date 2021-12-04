@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProduktgruppeModule } from './produktgruppe/produktgruppe.module';
 import { FamilienmitgliedModule } from './familienmitglied/familienmitglied.module';
 import { AusgabenModule } from './ausgaben/ausgaben.module';
+import { EinkommenModule } from './einkommen/einkommen.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AusgabenModule } from './ausgaben/ausgaben.module';
     AuthModule, 
     ProduktgruppeModule, 
     FamilienmitgliedModule, 
-    AusgabenModule],
+    AusgabenModule, EinkommenModule],
 })
 export class AppModule {
     static forRoot(
