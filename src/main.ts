@@ -18,6 +18,7 @@ async function bootstrap() {
 
     useContainer(app.select(LadenModule), { fallbackOnErrors: true });
 
+    app.enableCors()
     /**
     * Run DB migrations
     */
