@@ -15,9 +15,9 @@ export class LadenController {
     }
 
     @Get(":id")
-    async getOne(@Param("id") id: number): Promise<LadenDto>　{
+    async getOne(@Param("id") id: number): Promise<LadenDto> {
         const laden = await this.service.getOne(id)
-        return toEntityDto(new LadenDto(),　laden)
+        return toEntityDto(new LadenDto(), laden)
     }
 
     @Post()
